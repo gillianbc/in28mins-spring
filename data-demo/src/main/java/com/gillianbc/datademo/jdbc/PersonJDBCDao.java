@@ -1,6 +1,8 @@
 package com.gillianbc.datademo.jdbc;
 
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.gillianbc.datademo.entity.Person;
@@ -19,9 +22,24 @@ public class PersonJDBCDao {
 	JdbcTemplate jdbctemplate;
 	
 	Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	//An alternative to BeanPropertyRowMapper<Person>
+	class PersonRowMapper implements RowMapper<Person>{
+
+		@Override
+		public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Person person = new Person();
+			person.setId(rs.getInt("id"));
+			person.setName(rs.getString("name"));
+			person.setLocation(rs.getString("location"));
+			person.setBirthDate(rs.getTimestamp("birth_date"));
+			return person;
+		}
+		
+	}
 
 	public List<Person> findAll() {
-		return jdbctemplate.query("select * from person", new BeanPropertyRowMapper<Person>(Person.class));
+		return jdbctemplate.query("select * from person", new PersonRowMapper());
 
 	}
 	
@@ -33,13 +51,13 @@ public class PersonJDBCDao {
 	public List<Person> findByLocation(String location) {
 		return jdbctemplate.query("select * from person where location = ?", 
 				new Object[] {location},
-				new BeanPropertyRowMapper<Person>(Person.class));
+				new PersonRowMapper());
 	}
 	
 	public List<Person> findByLocationAndName(String location, String name) {
 		return jdbctemplate.query("select * from person where location = ? and name = ?", 
 				new Object[] {location,name},
-				new BeanPropertyRowMapper<Person>(Person.class));
+				new PersonRowMapper());
 	}
 	
 	public int deleteById(int id) {

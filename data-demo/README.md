@@ -8,3 +8,7 @@ I think it's because with JPA, we are letting JPA create our table from the Pers
 - data.sql seeds it with data
 - create table statement drops and recreates table again
 Hence, no data.
+
+# FindAll
+@NamedQuery(name = "find all persons", query="select p from Person p")
+This is JPQL, hence the non-standard sql-like syntax

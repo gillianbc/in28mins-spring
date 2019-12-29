@@ -1,7 +1,10 @@
 package com.gillianbc.datademo.jpa;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -19,6 +22,11 @@ public class PersonJPADao {
 	
 	public Person findById(int id) {
 		return entityManager.find(Person.class, id);//JPA
+	}
+	
+	public List<Person> findAll(){
+		TypedQuery<Person> query = entityManager.createNamedQuery("find all persons", Person.class);
+		return query.getResultList();
 	}
 	
 	//Insert and Update are the same - JPA knows which is which by looking for the id

@@ -42,5 +42,7 @@ public class JPADataDemoApplication implements CommandLineRunner{
 		logger.info("Insert New -> {}", 
 				repository.insertUpdate(new Person("Hannibal", "Ullswater", new Date())));
 	    repository.deleteById(10001);
+	    
+	    logger.info(repository.findAll().toString());
 	}
 }

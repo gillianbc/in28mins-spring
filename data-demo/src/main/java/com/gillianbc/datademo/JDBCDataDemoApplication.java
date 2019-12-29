@@ -13,14 +13,14 @@ import com.gillianbc.datademo.entity.Person;
 import com.gillianbc.datademo.jdbc.PersonJDBCDao;
 
 @SpringBootApplication
-public class DataDemoApplication implements CommandLineRunner{
+public class JDBCDataDemoApplication implements CommandLineRunner{
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	PersonJDBCDao dao;
 
 	public static void main(String[] args) {
-		SpringApplication.run(DataDemoApplication.class, args);
+		SpringApplication.run(JDBCDataDemoApplication.class, args);
 	}
 
 	@Override

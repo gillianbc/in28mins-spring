@@ -1,15 +1,21 @@
 package com.gillianbc.springmvc;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+// See todo-servlet.xml for how the return value is decorated with a prefix and a suffix 
+// so that it redirects to /WEB-INF/views\login.jsp
 @Controller
 public class LoginController {
+	
+	Log logger = LogFactory.getLog(this.getClass());
+	
 	@RequestMapping(value = "/login")
-	@ResponseBody
-	public String sayHello() {
-		return "Hello World - from the sayHello() method of LoginController.java";
+	public String goToLoginJSP() {
+		logger.info("Hello");
+		return "login";
 	}
 
 }

@@ -27,7 +27,10 @@ maven-compiler-plugin - maven will build the war file for us
 tomcat7-maven-plugin - maven will run the tomcat webserver for us and reload when source changes detected
 
 ## LoginServlet.java
-Processes an HTTP request and sends a response
+Processes an HTTP request and sends a response.  Redirects to a jsp.
+
+## Login.jsp
+Easier way of building html content.  Can also include scriptlet (i.e. java code).  Scriptlets are bad practice and should not be used since business logic should be in the business layer.
 
 ## web.xml
 Defines the default page for localhost:8080 as login.do

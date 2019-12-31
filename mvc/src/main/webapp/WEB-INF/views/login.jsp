@@ -10,10 +10,19 @@
 <body>
 My first JSP - you access me from http://localhost:8080
 <p>Try a request param e.g. http://localhost:8080?name=larry</p>
-<p>I found the name of: ${nameattr}</p>
+<p>I found the name of: </p><h1>${nameattr}</h1>
 <%Date today = new Date();%>
 <div>
 Today's date is <%=today %>
 </div>
+<!-- This will do a GET and send the username as an http param
+http://localhost:8080/login.do?username=gillian -->
+<form action="login.do"><b>Please enter your name</b><input type="text" name="username"/>
+<input type="submit" value="Login"/>
+</form>
+
+<form action="login.do" method="post"><b>Please post your name</b><input type="text" name="username"/>
+<input type="submit" value="Login"/>
+</form>
 </body>
 </html>

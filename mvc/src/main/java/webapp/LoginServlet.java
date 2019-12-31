@@ -34,13 +34,20 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//redirect to the JSP
-		request.setAttribute("nameattr", request.getParameter("name"));
-		System.out.println(request.getAttribute("nameattr"));
-		
-		request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
 		// set an attribute from the request param http://localhost:8080?name=xxxx
-		
+		request.setAttribute("nameattr", request.getParameter("username"));
+		System.out.println(request.getAttribute("nameattr"));
+		//redirect to the JSP
+		request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// set an attribute from the request param http://localhost:8080?name=xxxx
+		request.setAttribute("nameattr", request.getParameter("username"));
+		System.out.println(request.getAttribute("nameattr"));
+		//redirect to the JSP
+		request.getRequestDispatcher("/WEB-INF/views/welcome.jsp").forward(request, response);
 	}
 
 }

@@ -1,4 +1,4 @@
-package webapp;
+package com.gillianbc.webapp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.gillianbc.business.UserValidationService;
 
 /*
  * Browser sends Http Request to Web Server
@@ -32,6 +34,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/login.do")
 public class LoginServlet extends HttpServlet {
+	
+	UserValidationService userValidationService = new UserValidationService();
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// set an attribute from the request param http://localhost:8080?name=xxxx
@@ -44,10 +49,19 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// set an attribute from the request param http://localhost:8080?name=xxxx
-		request.setAttribute("nameattr", request.getParameter("username"));
-		System.out.println(request.getAttribute("nameattr"));
-		//redirect to the JSP
-		request.getRequestDispatcher("/WEB-INF/views/welcome.jsp").forward(request, response);
+		String username = request.getParameter("username");
+		String pwd = request.getParameter("password");
+		request.setAttribute("nameattr", username);
+		request.setAttribute("password", pwd);
+		
+		System.out.println(request.getAttribute("nameattr") + " - " + request.getAttribute("password"));
+		
+		if (userValidationService.isUserValid(username, pwd))
+			//redirect to the Welcome JSP
+			request.getRequestDispatcher("/WEB-INF/views/welcome.jsp").forward(request, response);
+		else
+			//redirect to the Login JSP
+			request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
 	}
 
 }

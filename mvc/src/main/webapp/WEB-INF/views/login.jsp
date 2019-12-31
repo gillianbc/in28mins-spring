@@ -21,7 +21,10 @@ http://localhost:8080/login.do?username=gillian -->
 <input type="submit" value="Login"/>
 </form>
 
-<form action="login.do" method="post"><b>Please post your name</b><input type="text" name="username"/>
+<form action="login.do" method="post">
+<p>gillian / gillian is valid, everything else is invalid</p>
+<b>Please post your name</b><input type="text" name="username"/>
+<b>Please post your password</b><input type="password" name="password"/>
 <input type="submit" value="Login"/>
 </form>
 </body>

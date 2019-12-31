@@ -2,7 +2,7 @@
 
 From course:  https://www.udemy.com/course/spring-tutorial-for-beginners/learn/lecture/5783088
 
-The tutor's sourcecode is here:
+The tutor's sourcecode is here.  Read the various md files for the steps:
 
 https://github.com/in28minutes/spring-master-class/tree/master/02-basic-web-application
 
@@ -45,5 +45,15 @@ If it doesn't have the @ResponseBody annotation, it considers the return value a
 Our views are in **/WEB-INF/views**. We want it to go to login.jsp.  To add that path and the .jsp suffix, we use the InternalResourceViewResolver which extends UrlBasedViewResolver.  The UrlBasedViewResolver has a prefix and a suffix property for exactly this purpose.
 We create a bean for the InternalResourceViewResolver in our servlet i.e. todo-servlet.xml.
 
+# Flow of Control
+Spring MVC Request Flow
 
+DispatcherServlet receives HTTP Request.
+DispatcherServlet identifies the right Controller based on the URL.
+Controller executes Business Logic.
+Controller returns a) Model b) View Name Back to DispatcherServlet.
+DispatcherServlet identifies the correct view (ViewResolver).
+DispatcherServlet makes the model available to view and executes it.
+DispatcherServlet returns HTTP Response Back.
+Flow : http://docs.spring.io/spring-framework/docs/2.0.8/reference/images/mvc.png
 

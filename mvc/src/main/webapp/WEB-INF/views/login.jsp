@@ -7,6 +7,8 @@
 <title>Hooray</title>
 </head>
 <body>
-My first JSP
+My first JSP - you access me from http://localhost:8080
+<p>Try a request param e.g. http://localhost:8080?name=larry</p>
+<p>I found the name of: ${nameattr}</p>
 </body>
 </html>

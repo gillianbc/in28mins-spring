@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 //a request-response programming model.
 
 //1. extends javax.servlet.http.HttpServlet
-//2. @WebServlet(urlPatterns = "/login.do")
+//2. @WebServlet(urlPatterns = "/login.do") - see https://www.codejava.net/java-ee/servlet/webservlet-annotation-examples
 //3. doGet(HttpServletRequest request, HttpServletResponse response)
 //4. How is the response created?
 
@@ -34,7 +34,13 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//redirect to the JSP
+		request.setAttribute("nameattr", request.getParameter("name"));
+		System.out.println(request.getAttribute("nameattr"));
+		
 		request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+		// set an attribute from the request param http://localhost:8080?name=xxxx
+		
 	}
 
 }

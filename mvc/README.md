@@ -15,6 +15,8 @@ The JSPs live in the WEB-INF folder.
 
 # To run from Eclipse
 Right-click, Run as, Maven .. ==> enter `tomcat7:run`  in Goals field of the launch configuration
+Access the app on http://localhost:8080 - or http://localhost:8080/login.do
+Later we add request params e.g. http://localhost:8080?name=something
 
 # Issues
 bind exception - address already in use.  You've probably run it before and it's not been terminated on 8080.  Click the xx double-cross in the Console tab - remove all terminated launches
@@ -22,7 +24,7 @@ bind exception - address already in use.  You've probably run it before and it's
 ## pom.xml
 javaee-web-api - for our javax servlet so that we can have gets, posts etc
 maven-compiler-plugin - maven will build the war file for us
-tomcat7-maven-plugin - maven will run the tomcat webserver for us
+tomcat7-maven-plugin - maven will run the tomcat webserver for us and reload when source changes detected
 
 ## LoginServlet.java
 Processes an HTTP request and sends a response

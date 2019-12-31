@@ -10,4 +10,4 @@ I've used branches for various chapters e.g. JBDC example (Lecture 89) is on bra
   
 # Issues
 If you get a port 8080 in use, it's probably after you've had some errors when running and Eclipse has held on to the port.
-Close and restart Eclipse.
+Close and restart Eclipse or try the double x in the console window to remove terminated launches  

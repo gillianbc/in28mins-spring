@@ -10,22 +10,25 @@
 <body>
 My first JSP - you access me from http://localhost:8080
 <p>Try a request param e.g. http://localhost:8080?name=larry</p>
-<p>I found the name of: </p><h1>${nameattr}</h1>
+
 <%Date today = new Date();%>
 <div>
 Today's date is <%=today %>
 </div>
-<!-- This will do a GET and send the username as an http param
-http://localhost:8080/login.do?username=gillian -->
+This will do a GET as we've not defined the method of this form.  
+It will send the username as an http param
+http://localhost:8080/login.do?username=gillian.  <br> You will be returned to this login page
 <form action="login.do"><b>Please enter your name</b><input type="text" name="username"/>
-<input type="submit" value="Login"/>
+<input type="submit" value="Please Login"/>
 </form>
 
+<p>I found the name of: </p><h1>${nameattr} - look at the url</h1>
+<p>This will do a post as we've defined the method of this form as POST</p>
 <form action="login.do" method="post">
 <p>gillian / gillian is valid, everything else is invalid</p>
 <b>Please post your name</b><input type="text" name="username"/>
 <b>Please post your password</b><input type="password" name="password"/>
-<input type="submit" value="Login"/>
+<input type="submit" value="Please Login"/>
 </form>
 </body>
 </html>

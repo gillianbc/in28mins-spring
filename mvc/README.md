@@ -35,6 +35,8 @@ Anything that comes in on <url-pattern>/spring-mvc/*</url-pattern> will be passe
 
 The dispatcher, i.e. `todo-servlet.xml`, does a component scan on the `com.gillianbc` package.
 
+(Also in web.xml, we still have the <welcome-file>login.do</welcome-file> from the previous exercise (see branch mvc).  login.do is defined in LoginServlet.java i.e. @WebServlet(urlPatterns = "/login.do").  So, url `http://localhost:8080` will hit the LoginServlet.java which has a doGet() and a doPost() which will redirect to login.jsp or welcome.jsp).
+
 ## Handler
 In the com.gillianbc.springmvc package, it will find a method flagged with the @Controller annotation in the `LoginController` class.  The `LoginController` class is associated with path @RequestMapping(value = "/login") so will respond to `http://localhost.8080/spring-mvc/login`.
 
@@ -45,8 +47,18 @@ If it doesn't have the @ResponseBody annotation, it considers the return value a
 Our views are in **/WEB-INF/views**. We want it to go to login.jsp.  To add that path and the .jsp suffix, we use the InternalResourceViewResolver which extends UrlBasedViewResolver.  The UrlBasedViewResolver has a prefix and a suffix property for exactly this purpose.
 We create a bean for the InternalResourceViewResolver in our servlet i.e. todo-servlet.xml.
 
-# Flow of Control
-Spring MVC Request Flow
+## Summary
+GET http://localhost.8080 ==> web.xml ==> welcome-file ==> login.do ==> LoginServlet.java ==> login.jsp
+GET http://localhost:8080/spring-mvc/hello ==> web.xml ==> servlet-mapping spring-mvc/* ==> todo-servlet.xml ==> component scan ==> HelloController.java ==> ResponseBody
+GET http://localhost:8080/spring-mvc/login ==> web.xml ==> servlet-mapping spring-mvc/ ==> todo-servlet.xml ==> component scan ==> LoginController ==> "login" ==> login.jsp
+GET http://localhost:8080/spring-mvc/joke ==> web.xml ==> servlet-mapping ==> todo-servlet.xml ==> component scan ==> LoginController ==> "joke" ==> joke.jsp
+
+login.jsp - Form 1 ==> GET form action login.do ==> LoginServlet.java ==> doGet()==> login.jsp
+login.jsp - Form 2 valid user/pwd ==> POST form action login.do ==> LoginServlet.java ==> doPost() ==> welcome.jsp
+login.jsp - Form 2 invalid user/pwd ==> POST form action login.do ==> LoginServlet.java ==> doPost() ==> login.jsp
+
+
+# Spring MVC Request Flow
 
 DispatcherServlet receives HTTP Request.
 DispatcherServlet identifies the right Controller based on the URL.

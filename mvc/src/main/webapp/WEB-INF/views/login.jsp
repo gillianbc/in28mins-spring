@@ -30,5 +30,13 @@ http://localhost:8080/login.do?username=gillian.  <br> You will be returned to t
 <b>Please post your password</b><input type="password" name="password"/>
 <input type="submit" value="Please Login"/>
 </form>
+
+<p>This will do a spring-mvc post as we've defined the method of this form as POST</p>
+<form action="/spring-mvc/login" method="post">
+<p>gillian / gillian is valid, everything else is invalid</p>
+<b>Please post your name</b><input type="text" name="username"/>
+<b>Please post your password</b><input type="password" name="password"/>
+<input type="submit" value="Please Login"/>
+</form>
 </body>
 </html>

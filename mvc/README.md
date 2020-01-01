@@ -48,14 +48,28 @@ Our views are in **/WEB-INF/views**. We want it to go to login.jsp.  To add that
 We create a bean for the InternalResourceViewResolver in our servlet i.e. todo-servlet.xml.
 
 ## Summary
-GET http://localhost.8080 ==> web.xml ==> welcome-file ==> login.do ==> LoginServlet.java ==> login.jsp
-GET http://localhost:8080/spring-mvc/hello ==> web.xml ==> servlet-mapping spring-mvc/* ==> todo-servlet.xml ==> component scan ==> HelloController.java ==> ResponseBody
-GET http://localhost:8080/spring-mvc/login ==> web.xml ==> servlet-mapping spring-mvc/ ==> todo-servlet.xml ==> component scan ==> LoginController ==> "login" ==> login.jsp
-GET http://localhost:8080/spring-mvc/joke ==> web.xml ==> servlet-mapping ==> todo-servlet.xml ==> component scan ==> LoginController ==> "joke" ==> joke.jsp
 
-login.jsp - Form 1 ==> GET form action login.do ==> LoginServlet.java ==> doGet()==> login.jsp
-login.jsp - Form 2 valid user/pwd ==> POST form action login.do ==> LoginServlet.java ==> doPost() ==> welcome.jsp
-login.jsp - Form 2 invalid user/pwd ==> POST form action login.do ==> LoginServlet.java ==> doPost() ==> login.jsp
+**GET http://localhost.8080** ==> web.xml ==> welcome-file ==> login.do ==> LoginServlet.java ==> login.jsp
+
+**GET http://localhost:8080/spring-mvc/hello** ==> web.xml ==> servlet-mapping spring-mvc/* ==> todo-servlet.xml ==> component scan ==> HelloController.java ==> ResponseBody
+
+**GET http://localhost:8080/spring-mvc/login** ==> web.xml ==> servlet-mapping spring-mvc/ ==> todo-servlet.xml ==> component scan ==> LoginController ==> "login" ==> login.jsp
+
+**GET http://localhost:8080/spring-mvc/joke** ==> web.xml ==> servlet-mapping ==> todo-servlet.xml ==> component scan ==> LoginController ==> "joke" ==> joke.jsp
+
+**GET http://localhost:8080/spring-mvc/** ==> web.xml ==> servlet-mapping ==> todo-servlet.xml ==> component scan ==> LoginController ==> response body
+
+**GET http://localhost:8080/spring-mvc** ==> web.xml ==> 404 
+
+**login.jsp - Form 1** ==> GET form action login.do ==> LoginServlet.java ==> doGet()==> login.jsp
+
+**login.jsp - Form 2 valid user/pwd** ==> POST form action login.do ==> LoginServlet.java ==> doPost() ==> welcome.jsp
+
+**login.jsp - Form 2 invalid user/pwd** ==> POST form action login.do ==> LoginServlet.java ==> doPost() ==> login.jsp
+
+**login.jsp - Form 3 valid user/pwd** ==> POST form action /spring-mvc/login ==> LoginController.java ==> doPost() ==> welcome.jsp
+
+**login.jsp - Form 3 invalid user/pwd** ==> POST form action /spring-mvc/login ==> LoginController.java ==> doPost() ==> login.jsp
 
 
 # Spring MVC Request Flow
